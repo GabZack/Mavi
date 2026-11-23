@@ -8,4 +8,4 @@ def falar(texto):
 
 
 if __name__ == "__main__":
-    falar(texto="Ola pessoal, Sou a mavi, Seu assitente virtual feito por Cristiano Ronaldo!")
+    falar(texto="Olá, eu sou a Mavi, sua assistente virtual.")
