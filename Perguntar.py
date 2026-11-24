@@ -1,13 +1,16 @@
 import Ouvir
 from dotenv import load_dotenv
 from groq import Groq
+import os
 
 load_dotenv()
 cliente = Groq()
 def perguntar(frase):
     resposta = cliente.chat.completions.create(
         model="openai/gpt-oss-20b",
-        messages=[{"role": "user", "content": frase}],
+        messages=[{"role": "system", "content": os.getenv("regras")},
+                  {"role": "user", "content": frase}
+                    ],
         tools=[ 
                 {
                     "type": "browser_search"
