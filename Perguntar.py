@@ -12,19 +12,22 @@ def limpar(limpeza):
 
 
 def perguntar(frase):
-    resposta = cliente.chat.completions.create(
-        model="openai/gpt-oss-20b",
-        messages=[{"role": "system", "content": os.getenv("regras")},
-                  {"role": "user", "content": frase}
-                    ],
-        tools=[ 
-                {
-                    "type": "browser_search"
-                }
-            ]
-        )
+    if frase != "":
+        resposta = cliente.chat.completions.create(
+            model="openai/gpt-oss-20b",
+            messages=[{"role": "system", "content": os.getenv("regras")},
+                    {"role": "user", "content": frase}
+                        ],
+            tools=[ 
+                    {
+                        "type": "browser_search"
+                    }
+                ]
+            )
 
-    return limpar(resposta.choices[0].message.content)
+        return limpar(resposta.choices[0].message.content)
+    else:
+        return "Houve um problema de conexão, por favor, espere e tente novamente mais tarde!"
 
 
 
